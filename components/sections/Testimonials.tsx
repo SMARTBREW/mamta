@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { UPDATED_TESTIMONIALS } from '@/lib/constants';
 
 interface Testimonial {
   id: string;
@@ -19,41 +21,7 @@ export default function Testimonials() {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const testimonialRef = useRef<HTMLDivElement>(null);
-
-  const testimonials: Testimonial[] = [
-    {
-      id: '1',
-      name: 'Dr. Priya Sharma',
-      role: 'Community Health Worker',
-      image: '/images/hero/mamta1.jpg',
-      quote: 'Working with MAMTA has transformed how we approach maternal health in our community. The training programs have equipped us with essential skills to save lives.',
-      organization: 'Rural Health Initiative',
-    },
-    {
-      id: '2',
-      name: 'Rajesh Kumar',
-      role: 'Program Coordinator',
-      image: '/images/hero/mamta2.jpg',
-      quote: 'The research methodologies and evidence-based interventions provided by MAMTA have significantly improved our program effectiveness and community trust.',
-      organization: 'Child Welfare Foundation',
-    },
-    {
-      id: '3',
-      name: 'Anita Verma',
-      role: 'Beneficiary',
-      image: '/images/hero/mamta3.jpg',
-      quote: 'Through MAMTA\'s reproductive health programs, I gained knowledge that not only improved my health but also helped me educate other women in my village.',
-      organization: 'Women\'s Empowerment Group',
-    },
-    {
-      id: '4',
-      name: 'Dr. Suresh Patel',
-      role: 'Research Partner',
-      image: '/images/hero/mamta4.jpg',
-      quote: 'Collaborating with MAMTA on health systems research has been invaluable. Their 30+ years of experience brings depth to every project we undertake together.',
-      organization: 'Medical Research Institute',
-    },
-  ];
+  const testimonials = UPDATED_TESTIMONIALS;
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -88,8 +56,8 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+    <section className="py-16 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -97,20 +65,21 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="text-center mb-6 sm:mb-8 md:mb-10"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-3 sm:mb-4 md:mb-5 px-4">
+          <h2 className="text-3xl md:text-4xl font-roboto font-bold text-black mb-4 px-4">
             Voices of{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-mamta-primary to-mamta-teal bg-clip-text text-transparent">
               Impact
             </span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-xs sm:max-w-lg md:max-w-2xl mx-auto px-4 sm:px-6 leading-relaxed">
+          <div className="w-24 h-1 bg-mamta-primary mx-auto mb-6"></div>
+          <p className="text-base font-arial text-gray-600 max-w-2xl mx-auto px-4 sm:px-6 leading-relaxed">
             Hear from health workers, researchers, and community members whose lives have been transformed
             through our health initiatives.
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Main Testimonial */}
+          
           <div 
             className="relative min-h-[250px] sm:min-h-[280px] md:min-h-[300px] flex items-center justify-center px-2 sm:px-4"
             ref={testimonialRef}
@@ -128,55 +97,58 @@ export default function Testimonials() {
                 className="w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto"
               >
                 <motion.div 
-                  className="bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl p-4 sm:p-5 md:p-6 relative border border-gray-100"
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 >
-                  <motion.div
-                    initial={{ rotate: 0 }}
-                    animate={{ rotate: [0, 15, 0, -15, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                    className="absolute top-3 left-3 sm:top-4 sm:left-4 md:top-6 md:left-6"
-                  >
-                    <Quote className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-blue-200" />
-                  </motion.div>
-                  
-                  <div className="flex flex-col sm:flex-row md:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-3 md:space-x-4 pt-6 sm:pt-0">
-                    <motion.div 
-                      className="flex-shrink-0 order-first sm:order-first"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <div
-                        className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-full bg-cover bg-center shadow-lg border-2 border-white"
-                        style={{backgroundImage: `url('${testimonials[currentIndex].image}')`}}
-                      />
-                    </motion.div>
-                    
-                    <div className="flex-1 text-center sm:text-left">
-                      <blockquote className="text-sm sm:text-base md:text-lg text-gray-700 italic leading-relaxed mb-3 sm:mb-4 px-2 sm:px-0">
-                        "{testimonials[currentIndex].quote}"
-                      </blockquote>
+                  <Card className="bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl p-4 sm:p-5 md:p-6 relative border border-gray-100">
+                    <CardContent className="p-0">
+                      <motion.div
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: [0, 15, 0, -15, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                        className="absolute top-3 left-3 sm:top-4 sm:left-4 md:top-6 md:left-6"
+                      >
+                        <Quote className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-mamta-primary" />
+                      </motion.div>
                       
-                      <div className="space-y-1 sm:space-y-2">
-                        <div className="font-semibold text-black text-base sm:text-lg">
-                          {testimonials[currentIndex].name}
-                        </div>
-                        <div className="text-blue-600 font-medium text-sm sm:text-base">
-                          {testimonials[currentIndex].role}
-                        </div>
-                        <div className="text-gray-600 text-xs sm:text-sm">
-                          {testimonials[currentIndex].organization}
+                      <div className="flex flex-col sm:flex-row md:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-3 md:space-x-4 pt-6 sm:pt-0">
+                        <motion.div 
+                          className="flex-shrink-0 order-first sm:order-first"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <div
+                            className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-full bg-cover bg-center shadow-lg border-2 border-white"
+                            style={{backgroundImage: `url('${testimonials[currentIndex].image}')`}}
+                          />
+                        </motion.div>
+                        
+                        <div className="flex-1 text-center sm:text-left">
+                          <blockquote className="text-sm sm:text-base md:text-lg font-arial text-gray-700 italic leading-relaxed mb-3 sm:mb-4 px-2 sm:px-0">
+                            "{testimonials[currentIndex].quote}"
+                          </blockquote>
+                          
+                          <div className="space-y-1 sm:space-y-2">
+                            <div className="font-roboto font-semibold text-black text-base sm:text-lg">
+                              {testimonials[currentIndex].name}
+                            </div>
+                            <div className="text-mamta-primary font-arial font-medium text-sm sm:text-base">
+                              {testimonials[currentIndex].role}
+                            </div>
+                            <div className="text-gray-600 text-xs sm:text-sm font-arial">
+                              {testimonials[currentIndex].organization}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Mobile swipe indicator */}
+          
           <div className="sm:hidden flex justify-center mt-4 items-center">
             <motion.div 
               initial={{ opacity: 0 }}
@@ -191,7 +163,7 @@ export default function Testimonials() {
             </motion.div>
           </div>
 
-          {/* Navigation Indicators */}
+          
           <div className="flex items-center justify-center space-x-4 mt-4 sm:mt-5">
             <div className="flex space-x-2 sm:space-x-3">
               {testimonials.map((_, index) => (
@@ -202,8 +174,8 @@ export default function Testimonials() {
                   onClick={() => setCurrentIndex(index)}
                   className={`h-2 sm:h-3 md:h-4 rounded-full transition-all duration-200 ${
                     index === currentIndex 
-                      ? 'bg-blue-500 w-6 sm:w-8 md:w-10' 
-                      : 'bg-gray-300 w-2 sm:w-3 md:w-4 hover:bg-blue-300'
+                      ? 'bg-mamta-primary w-6 sm:w-8 md:w-10' 
+                      : 'bg-gray-300 w-2 sm:w-3 md:w-4 hover:bg-mamta-secondary'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />

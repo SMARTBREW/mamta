@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'roboto': ['var(--font-roboto)', 'sans-serif'],
+        'arial': ['Arial', 'Helvetica', 'sans-serif'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -59,6 +63,16 @@ const config: Config = {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
+        },
+        mamta: {
+          primary: '#A4DA56',
+          secondary: '#8FCC41',
+          tertiary: '#B9E76B',
+          accent: '#F97316',
+          teal: '#14B8A6',
+          blue: '#3B82F6',
+          purple: '#8B5CF6',
+          yellow: '#EAB308',
         },
       },
       keyframes: {

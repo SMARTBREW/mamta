@@ -43,6 +43,14 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --mamta-primary: 84 65% 60%;
+    --mamta-secondary: 84 65% 55%;
+    --mamta-tertiary: 84 65% 65%;
+    --mamta-accent: 25 95% 53%;
+    --mamta-teal: 174 72% 41%;
+    --mamta-blue: 217 91% 60%;
+    --mamta-purple: 262 83% 58%;
+    --mamta-yellow: 45 93% 47%;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -77,7 +85,10 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-arial;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-roboto;
   }
 }
 
@@ -114,7 +125,6 @@
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -124,22 +134,20 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #22c55e;
+  background: #A4DA56;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #16a34a;
+  background: #8FCC41;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Focus styles */
 button:focus,
 a:focus {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #A4DA56;
   outline-offset: 2px;
 }

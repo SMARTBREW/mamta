@@ -1,18 +1,42 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Menu, X } from 'lucide-react';
-import HeroSection from '@/components/sections/Hero';
-import StatsSection from '@/components/sections/Stats';
-import AboutPreview from '@/components/sections/AboutPreview';
-import CompanyMilestones from '@/components/sections/CompanyMilestones';
-import ImpactStories from '@/components/sections/ImpactStories';
-import OurPresence from '@/components/sections/OurPresence';
-import OurBlogs from '@/components/sections/OurBlogs';
-import Testimonials from '@/components/sections/Testimonials';
+
+const HeroSection = dynamic(() => import('@/components/sections/Hero'), {
+  loading: () => <div className="h-[70vh] bg-gray-100 animate-pulse" />
+});
+
+const StatsSection = dynamic(() => import('@/components/sections/Stats'), {
+  loading: () => <div className="py-16 bg-gray-100 animate-pulse" />
+});
+
+const AboutPreview = dynamic(() => import('@/components/sections/AboutPreview'), {
+  loading: () => <div className="py-16 bg-gray-100 animate-pulse" />
+});
+
+const CompanyMilestones = dynamic(() => import('@/components/sections/CompanyMilestones'), {
+  loading: () => <div className="py-20 bg-gray-100 animate-pulse" />
+});
+
+const ImpactStories = dynamic(() => import('@/components/sections/ImpactStories'), {
+  loading: () => <div className="py-16 bg-gray-100 animate-pulse" />
+});
+
+const OurPresence = dynamic(() => import('@/components/sections/OurPresence'), {
+  loading: () => <div className="py-16 bg-gray-100 animate-pulse" />
+});
+
+const OurBlogs = dynamic(() => import('@/components/sections/OurBlogs'), {
+  loading: () => <div className="py-16 bg-gray-100 animate-pulse" />
+});
+
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
+  loading: () => <div className="py-16 bg-gray-100 animate-pulse" />
+});
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,30 +47,29 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header moved to Root layout */}
-
-      {/* Hero Section */}
+      
+      
       <HeroSection />
-     {/* Statistics Section */}
+     
      <StatsSection />
       
 
-      {/* About preview */}
+      
       <AboutPreview />
 
-      {/* Company Milestones */}
+      
       <CompanyMilestones />
 
-      {/* Our Presence */}
+      
       <OurPresence />
 
-      {/* Our Blogs */}
+      
       <OurBlogs />
 
-      {/* Impact Stories */}
+      
       <ImpactStories />
 
-      {/* Testimonials */}
+      
       <Testimonials />
 
       

@@ -12,15 +12,8 @@ type Stat = {
   icon: any;
 };
 
-const baseStats: Stat[] = [
-  { id: 'lives', value: 70, suffix: '+', label: 'Million', description: 'Lives Touched', icon: Heart },
-  { id: 'states', value: 26, suffix: '', label: 'States & UTs', description: 'National Footprint', icon: Globe },
-  { id: 'countries', value: 8, suffix: '', label: 'Countries', description: 'Global Footprint', icon: Globe },
-  { id: 'papers', value: 138, suffix: '+', label: 'Research Papers', description: 'In Peer-Reviewed Journals', icon: FileText },
-  { id: 'persons', value: 700, suffix: '+', label: 'Persons', description: 'Human Resource', icon: Users }
-];
+import { STATS_DATA } from '@/lib/constants';
 
-// Rolling digit component
 function RollingDigit({ digit, duration = 2000, delay = 0 }: { digit: number; duration?: number; delay?: number }) {
   const [currentDigit, setCurrentDigit] = useState(0);
 
@@ -31,10 +24,7 @@ function RollingDigit({ digit, duration = 2000, delay = 0 }: { digit: number; du
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
-        // Clock-wise rotation - always goes forward (0→1→2→...→target)
-        // Calculate total rotations + final digit
-        const totalRotations = 2; // 2 full rotations before stopping
+        const totalRotations = 2; 
         const totalSteps = totalRotations * 10 + digit;
         const currentStep = Math.floor(progress * totalSteps);
         const animatedValue = currentStep % 10;
@@ -61,7 +51,6 @@ function RollingDigit({ digit, duration = 2000, delay = 0 }: { digit: number; du
   );
 }
 
-// Rolling number component
 function RollingNumber({ value, suffix, duration = 2000 }: { value: number; suffix: string; duration?: number }) {
   const digits = value.toString().split('').map(Number);
   
@@ -72,7 +61,7 @@ function RollingNumber({ value, suffix, duration = 2000 }: { value: number; suff
           key={index} 
           digit={digit} 
           duration={duration} 
-          delay={0} // All digits start together
+          delay={0} 
         />
       ))}
       {suffix}
@@ -91,16 +80,16 @@ export default function StatsSection() {
   }, []);
 
   return (
-    <section className="py-4 bg-gray-100">
+    <section className="py-7 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-4 text-center">
-          {baseStats.map((stat, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-4 text-center">
+          {STATS_DATA.map((stat, index) => (
             <div key={stat.id} className="transition-all duration-300 transform hover:-translate-y-2">
               {startAnimation && (
                 <RollingNumber 
                   value={stat.value} 
                   suffix={stat.suffix} 
-                  duration={3000} // Same duration for all stats
+                  duration={3000} 
                 />
               )}
               {!startAnimation && (
